@@ -1,30 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Button } from 'antd-mobile';
-
 
 class App extends React.Component {
   render() {
+    const store = this.props.store
+    const add = this.props.add()
+    const remove = this.props.remove()
     return (
       <div>
-        <Hello></Hello>
-        <h2>World</h2>
-        <Talk name='abc'></Talk>
+        <h2>state count is {store.getState()}</h2>
+        <Button onClick={() => {store.dispatch(add)}}>Add</Button>
+        <Button onClick={() => {store.dispatch(remove)}}>remove</Button>
       </div>
     )
   }
 }
-function Talk(props) {
-  return (<div>
-    <h1>talk,{props.name}</h1>
-    <Button type="primary">push</Button>
-  </div>)
-         
-}
 
-class Hello extends React.Component {
-  render() {
-    let name = 'ls'
-    return <h2> hello{name}</h2>
-  }
-}
 export default App;
