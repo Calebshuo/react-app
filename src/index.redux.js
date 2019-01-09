@@ -16,3 +16,11 @@ export function add() {
 export function remove() {
   return {type:'remove'}
 }
+
+export function asyncAdd() {
+  return (dispatch)=>{
+    setTimeout(() => {
+      return dispatch({type:'add'})
+    }, 2000);
+  }
+}
