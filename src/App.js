@@ -4,7 +4,7 @@ import {add, remove, asyncAdd} from './index.redux.js';
 import { connect } from 'react-redux';
 
 @connect(
-  state=>({state : state}),
+  state=>({state : state.reducer}),
   { add, remove, asyncAdd }
 )
 class App extends React.Component {
