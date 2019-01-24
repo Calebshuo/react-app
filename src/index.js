@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, 
   Route, 
-  Link, 
   Redirect, 
   Switch
 } from "react-router-dom";
@@ -15,6 +14,7 @@ import { BrowserRouter as Router,
 import Auth from './Auth'
 import Dashboard from './Dashboard'
 import reducers from './reducer';
+import './config'
 
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
@@ -22,12 +22,12 @@ const store = createStore(reducers, compose(
 ))
 
 
-class Test extends React.Component {
-  render() {
-    console.log(this.props)
-    return <h1>test,{this.props.match.params.location}</h1>
-  }
-}
+// class Test extends React.Component {
+//   render() {
+//     console.log(this.props)
+//     return <h1>test,{this.props.match.params.location}</h1>
+//   }
+// }
 
 
 ReactDOM.render(
