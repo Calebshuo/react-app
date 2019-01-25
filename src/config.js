@@ -13,9 +13,7 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
   // Do something with response data
-  setTimeout(() => {
-    Toast.hide()
-  }, 2000)
+  Toast.hide()
   return response
 }, function (error) {
   // Do something with response error
