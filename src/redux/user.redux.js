@@ -1,6 +1,7 @@
 
 
 import axios from 'axios'
+import { getRedirectPath } from '../util'
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
@@ -16,7 +17,7 @@ const initState = {
 export function user(state=initState, action) {
   switch(action.type) {
     case REGISTER_SUCCESS:
-      return { ...state, ...action.payload, msg: '', isAuth: true }
+      return { ...state, ...action.payload, redirectTo:getRedirectPath(action.payload), msg: '', isAuth: true }
     case ERROR_MSG:
       return { ...state, msg: action.msg, isAuth:false }
     default:
@@ -32,7 +33,8 @@ function errorMsg(msg) {
   return { msg, type:ERROR_MSG }
 }
 
-export function register({user, pwd, repeatpwd, type}) {
+// 函数参数的解构赋值
+export function register({user, pwd, repeatpwd, type}) { 
   if (!user || !pwd ||!repeatpwd) {
     return errorMsg('用户名密码必须输入')
   }
