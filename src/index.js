@@ -13,6 +13,7 @@ import Register from './container/register/register'
 import reducers from './reducer'
 import './config'
 import AuthRoute from'./component/authrouter/authrouter'
+import BossInfo from './container/bossinfo/bossinfo'
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -24,7 +25,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route path='/boss' component={Boss}></Route>
+        <Route path='/bossinfo' component={BossInfo}></Route>
         <AuthRoute></AuthRoute>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
