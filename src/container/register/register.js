@@ -19,6 +19,7 @@ class Register extends React.Component {
       repeatpwd:'',
       type:'genuis'
     }
+    // 使用bind或箭头函数绑定this
     this.handleRegister = this.handleRegister.bind(this)
   }
   handleRegister() {

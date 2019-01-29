@@ -24,7 +24,7 @@ router.post('/register', function(req, res) {
         return res.json({code:1,msg:'存储到数据库时出错'})
       } else {
         res.cookie('userid', d._id)
-        res.json({code:0})
+        return res.json({code:0})
       }
     })
     //不用create方法是因为id只有存了之后才有

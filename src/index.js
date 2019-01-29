@@ -18,15 +18,12 @@ const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
-function Boss () {
-  return <h2>Boss</h2>
-}
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route path='/bossinfo' component={BossInfo}></Route>
         <AuthRoute></AuthRoute>
+        <Route path='/bossinfo' component={BossInfo}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
       </div>
