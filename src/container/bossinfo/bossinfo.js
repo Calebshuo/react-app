@@ -2,19 +2,20 @@ import React from 'react'
 import { NavBar, InputItem, TextareaItem, Button, WingBlank, WhiteSpace } from 'antd-mobile'
 import { connect } from 'react-redux'
 import AvatarSelector from '../../component/avatar-selector/avatar-selector'
-// import { update } from '../../redux/user.redux'
+import { update } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
+import { debug } from 'util';
 
 @connect(
   state => state.user,
-  // { update }
+  { update }
 )
 class BossInfo extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       title: '',
-      compant: '',
+      company: '',
       money: '',
       desc: '',
       avatar: ''
@@ -29,19 +30,22 @@ class BossInfo extends React.Component {
   }
 
   savaInfo () {
-    // if (this.state.avatar === '') {
+    // setState是异步的，所以下面这段代码起到的作用是第二次点击提交按钮才会发生跳转（第一次不满足下面jsx的判断）
+    // if (this.state.avatar === "") {
     //   this.setState({
-    //     'avatar': 'boy'
-    //   }, () => this.props.update(this.state))
+    //     avatar: 'boy'
+    //   })
     // }
+    this.props.update(this.state)
   }
  
   render () {
-    const path = this.props.location.pathname
+    const path = this.props.location.pathname  // 路由组件给的
     const redirect = this.props.redirectTo
     return (
       <div>
-        {/* {redirect && redirect !== path ? <Redirect to={this.props.redirectTo} /> : null} */}
+        {/* 因为一上来是bossinfo页面，所以加判断 */}
+        {redirect && redirect !== path ? <Redirect to={this.props.redirectTo} /> : null}
         <NavBar
           mode="dark">
           BOSS完善信息页面

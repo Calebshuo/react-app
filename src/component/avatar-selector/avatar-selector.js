@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Grid } from 'antd-mobile'
+import { debug } from 'util';
 // import PropTypes from 'prop-types'
-// import './avatar-selector.css'
 
 class AvatarSelector extends React.Component {
   // static propTypes = {

@@ -23,7 +23,7 @@ router.post('/register', function(req, res) {
       if (e) {
         return res.json({code:1,msg:'存储到数据库时出错'})
       } else {
-        res.cookie('userid', d._id)
+        res.cookie('userid', d._id) // cookie里只存一个id
         return res.json({code:0})
       }
     })
@@ -46,6 +46,27 @@ router.post('/login', function(req, res) {
     }
     res.cookie('userid', d._id) // 写cookie在response里写
     return res.json({code:0,data:d})
+  })
+})
+
+router.post('/update', function (req, res) {
+  const userid = req.cookies.userid
+  if (!userid) {
+    return res.json({
+      code: 1,
+      msg: 'cookie中没有找到userid字段。请重新登录后再次尝试'
+    })
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userid, body, function (err, doc) {
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, body)
+    return res.json({
+      code: 0,
+      data
+    })
   })
 })
 
