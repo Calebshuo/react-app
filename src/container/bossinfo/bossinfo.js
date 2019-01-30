@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import AvatarSelector from '../../component/avatar-selector/avatar-selector'
 import { update } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
-import { debug } from 'util';
 
 @connect(
   state => state.user,
@@ -18,7 +17,7 @@ class BossInfo extends React.Component {
       company: '',
       money: '',
       desc: '',
-      avatar: ''
+      avatar: 'boy'
     }
     this.saveInfo = this.savaInfo.bind(this)
   }
@@ -27,7 +26,7 @@ class BossInfo extends React.Component {
     this.setState({
       [key]: val
     })
-  }
+  } 
 
   savaInfo () {
     // setState是异步的，所以下面这段代码起到的作用是第二次点击提交按钮才会发生跳转（第一次不满足下面jsx的判断）

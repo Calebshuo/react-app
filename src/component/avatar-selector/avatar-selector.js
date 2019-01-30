@@ -1,12 +1,11 @@
 import React from 'react'
 import { List, Grid } from 'antd-mobile'
-import { debug } from 'util';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class AvatarSelector extends React.Component {
-  // static propTypes = {
-  //   selectAvatar: PropTypes.func.isRequired
-  // }
+  static propTypes = {
+    selectAvatar: PropTypes.func.isRequired // 父组件必须传入selectAvatar，并且是函数
+  }
 
   constructor (props) {
     super(props)
@@ -37,8 +36,6 @@ class AvatarSelector extends React.Component {
               this.setState(el)
               this.props.selectAvatar(el.text)
             }}
-            isCarousel
-            carouselMaxRow={1}
             columnNum={5}
             data={avatarList}/>
         </List>
