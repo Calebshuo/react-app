@@ -57,6 +57,7 @@ router.post('/update', function (req, res) {
       msg: 'cookie中没有找到userid字段。请重新登录后再次尝试'
     })
   }
+  // console.log('############req',req.body)
   const body = req.body
   User.findByIdAndUpdate(userid, body, function (err, doc) {
     const data = Object.assign({}, {
