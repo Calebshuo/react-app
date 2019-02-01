@@ -9,7 +9,6 @@ class NavLink extends React.Component {
     data: PropTypes.array.isRequired
   }
   render() {
-    console.log(this.props.data)
     const navList = this.props.data.filter(v=>!v.hide)
     return (
       <div>

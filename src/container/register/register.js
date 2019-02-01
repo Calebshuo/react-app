@@ -3,7 +3,6 @@ import Logo from '../../component/logo/logo'
 import { Button, WhiteSpace, Radio, WingBlank, List, InputItem, Toast }from 'antd-mobile'
 import { connect } from 'react-redux'
 import { register } from '../../redux/user.redux'
-import '../../index.css'
 import { Redirect } from 'react-router-dom'
 
 @connect (
@@ -17,7 +16,7 @@ class Register extends React.Component {
       user:'',
       pwd:'',
       repeatpwd:'',
-      type:'genuis'
+      type:'genius'
     }
     // 使用bind或箭头函数绑定this
     this.handleRegister = this.handleRegister.bind(this)
@@ -52,8 +51,8 @@ class Register extends React.Component {
             onChange={v=>this.handleChange('repeatpwd',v)}
           >确认密码</InputItem>
           <RadioItem
-            onChange={()=>this.handleChange('type','genuis')}
-            checked={this.state.type === 'genuis'}>牛人</RadioItem>
+            onChange={()=>this.handleChange('type','genius')}
+            checked={this.state.type === 'genius'}>牛人</RadioItem>
           <WhiteSpace/>
           <RadioItem 
             onChange={()=>this.handleChange('type','boss')}
