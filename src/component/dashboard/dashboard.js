@@ -5,12 +5,10 @@ import NavLink from '../navlink/navlink'
 import { Switch, Route } from 'react-router-dom'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
+import UserCenter from '../usercenter/usercenter'
 
 function Msg() {
   return <h2>消息列表页面</h2>
-}
-function User() {
-  return <h2>个人中心页面</h2>
 }
 
 @connect(
@@ -52,7 +50,7 @@ class Dashboard extends React.Component {
             text:'我',
             icon:'user',
             title:'个人中心',
-            component:User
+            component:UserCenter
         }
     ]
     return (
