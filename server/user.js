@@ -75,7 +75,7 @@ router.post('/update', function (req, res) {
 router.get('/info', function(req, res) {
   const { userid } = req.cookies  // 读cookie在request里读
   if (!userid) {
-    res.json({
+    return res.json({
       code:1
     })
   }

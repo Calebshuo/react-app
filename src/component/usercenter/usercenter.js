@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { List, Result, WhiteSpace, Modal } from 'antd-mobile'
 import browserCookie from 'browser-cookies'
+import { logout } from '../../redux/user.redux'
 
 @connect (
-  state => state.user
+  state => state.user,
+  { logout }
 )
 class UserCenter extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class UserCenter extends React.Component {
       { text: 'Cancel', style: 'default' },
       { text: 'yep!!', onPress: () => {
         browserCookie.erase('userid')
+        this.props.logout()
         this.props.history.push('/login')
       } },
     ]);

@@ -6,12 +6,10 @@ class AvatarSelector extends React.Component {
   static propTypes = {
     selectAvatar: PropTypes.func.isRequired // 父组件必须传入selectAvatar，并且是函数
   }
-
   constructor (props) {
     super(props)
     this.state = {}
   }
-
   render () {
     const avatarList = ['boy', 'girl', 'man' ,'woman', 'chick' ,'crab' ,'bull' ,'hedgehog', 'hippopo' ,'koala', 'lemur', 'pig', 'tiger', 'whale', 'zebra'].map(v => ({
       icon: require(`../img/${v}.png`),

@@ -9,7 +9,7 @@ import { Redirect } from 'react-router-dom'
   state => state.user,
   { update }
 )
-class BossInfo extends React.Component {
+class GeniusInfo extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -18,13 +18,11 @@ class BossInfo extends React.Component {
       avatar: 'boy'
     }
   }
-
   onChange (key, val) {
     this.setState({
       [key]: val
     })
   } 
-
   render () {
     const path = this.props.location.pathname  // 路由组件给的
     const redirect = this.props.redirectTo
@@ -60,4 +58,4 @@ class BossInfo extends React.Component {
   }
 }
 
-export default BossInfo
+export default GeniusInfo

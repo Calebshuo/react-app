@@ -4,6 +4,7 @@ import { getRedirectPath } from '../util'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
+const LOGOUT = 'LOGOUT'
 
 const initState = {
   msg:'',
@@ -19,6 +20,8 @@ export function user(state=initState, action) {
       return {...state, ...action.payload}
     case ERROR_MSG:
       return { ...state, msg: action.msg, isAuth:false }
+    case LOGOUT:
+      return {...initState}
     default:
       return state
   }
@@ -50,6 +53,10 @@ export function login({user,pwd}) {
         }
       })
   }
+}
+
+export function logout() {
+  return dispatch => dispatch({ type: LOGOUT})
 }
 
 // 函数参数的解构赋值

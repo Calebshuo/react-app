@@ -21,13 +21,11 @@ class BossInfo extends React.Component {
     }
     this.saveInfo = this.savaInfo.bind(this)
   }
-
   onChange (key, val) {
     this.setState({
       [key]: val
     })
   } 
-
   savaInfo () {
     // setState是异步的，所以下面这段代码起到的作用是第二次点击提交按钮才会发生跳转（第一次不满足下面jsx的判断）
     // if (this.state.avatar === "") {
