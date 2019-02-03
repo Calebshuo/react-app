@@ -1,13 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { List, Result, WhiteSpace } from 'antd-mobile'
+import { List, Result, WhiteSpace, Modal } from 'antd-mobile'
+import browserCookie from 'browser-cookies'
 
 @connect (
   state => state.user
 )
 class UserCenter extends React.Component {
+  constructor(props) {
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
+  logout() {
+    const alert = Modal.alert;
+    alert('logout', 'Are you sure???', [
+      { text: 'Cancel', style: 'default' },
+      { text: 'yep!!', onPress: () => {
+        browserCookie.erase('userid')
+        this.props.history.push('/login')
+      } },
+    ]);
+  }
   render() {
-    console.log(this.props) // updata函数前后后两次打印props
+    // console.log(this.props) // updata函数前后两次打印props
     const Item = List.Item
     const Brief = Item.Brief
     return this.props.user ? (
@@ -30,7 +45,7 @@ class UserCenter extends React.Component {
         </List>
         <WhiteSpace/>
         <List>
-          <Item>退出登录</Item>
+          <Item onClick={this.logout}>退出登录</Item>
         </List>
       </div> 
     ) :null
