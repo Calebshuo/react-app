@@ -44,7 +44,7 @@ export function login({user,pwd}) {
     return errorMsg('请输入用户名或密码')
   }
   return dispatch => {
-    axios.post('user/login', { user, pwd })
+    axios.post('/user/login', { user, pwd })
       .then(res => {
         if (res.status === 200 && res.data.code ===0) {
           dispatch(authSuccess(res.data.data))
@@ -68,7 +68,7 @@ export function register({user, pwd, repeatpwd, type}) {
     return errorMsg('密码和确认密码不同')
   }
   return dispatch => {
-    axios.post('user/register', { user, pwd, type})
+    axios.post('/user/register', { user, pwd, type})
       .then(res => {
         if (res.status === 200 && res.data.code ===0) {
           dispatch(authSuccess({user, type}))

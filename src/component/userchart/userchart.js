@@ -1,13 +1,18 @@
 import React from 'react'
 import { WingBlank, Card } from 'antd-mobile'
+import { withRouter } from 'react-router-dom'
 
+@withRouter
 class UserChart extends React.Component {
+  handlechange(user) {
+    this.props.history.push(`/chat/${user}`)
+  }
   render() {
     return (
       <div>
         <WingBlank>
           {this.props.userlist.map(v=>
-            v.avatar ? <Card key={v._id}>
+            v.avatar ? <Card key={v._id} onClick={()=>this.handlechange(v.user)}>
             <Card.Header
               title={v.user}
               thumb={require(`../img/${v.avatar}.png`)}
