@@ -6,11 +6,16 @@ const cookieParser = require('cookie-parser')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const model = require('./model')
+const Chat = model.getModel('chat')
 io.on('connection', function(socket) { // io是全局，socket是本地址
-  // console.log('user login')
-  socket.on('communicate', function(data) {
-    console.log(data)
-    io.emit('servertalk', data)
+  console.log('user login')
+  socket.on('sendmsg', function(data) {
+    const { from, to, msg } = data
+    const chatid = [from,to].sort().join('_')
+    Chat.create({chatid,from,to,content:msg}, function(err,doc) {
+      io.emit('recvmsg', Object.assign({}, doc._doc))
+    })
   })
 })
 const userRouter = require('./user')

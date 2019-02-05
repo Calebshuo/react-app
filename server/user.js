@@ -93,4 +93,13 @@ function md5Pwd(pwd) {
   return utils.md5(utils.md5(pwd+salt))
 }
 
+router.get('/getmsglist',function(req,res){
+  const user = req.cookies.userid
+  Chat.find({},function(err,doc){
+    if(!err){
+      return res.json({code:0,msgs:doc})
+    }
+  })
+})
+
 module.exports = router

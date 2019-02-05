@@ -4,15 +4,15 @@ import { withRouter } from 'react-router-dom'
 
 @withRouter
 class UserChart extends React.Component {
-  handlechange(user) {
-    this.props.history.push(`/chat/${user}`)
+  handlechange(id) {
+    this.props.history.push(`/chat/${id}`)
   }
   render() {
     return (
       <div>
         <WingBlank>
           {this.props.userlist.map(v=>
-            v.avatar ? <Card key={v._id} onClick={()=>this.handlechange(v.user)}>
+            v.avatar ? <Card key={v._id} onClick={()=>this.handlechange(v.user._id)}>
             <Card.Header
               title={v.user}
               thumb={require(`../img/${v.avatar}.png`)}
