@@ -12,22 +12,23 @@ class Chat extends React.Component {
     super(props)
     this.state = { text:'', msg:[] }
   }
-  handleChange() {
-    // socket.emit('communicate', this.state.text)
-    // this.setState({text:''})
-    const from = this.props.user._id 
-    const to = this.props.match.params.user
-    const msg = this.state.text;
-    this.props.sendMsg({from,to,msg})
-    this.setState({
-        text:''
-    })
-  }
   componentDidMount() {
     // socket.on('servertalk', data=>{
     //   this.setState({msg:[...this.state.msg,data]})
     // })
     this.props.getMsgList()
+    this.props.recvMsg() 
+  }
+  handleChange() {
+    // socket.emit('communicate', this.state.text)
+    // this.setState({text:''})
+    const from = this.props.user._id 
+    const to = this.props.match.params.user
+    const msg = this.state.text
+    this.props.sendMsg({from,to,msg})
+    this.setState({
+        text:''
+    })
   }
   render() {
     // console.log(this.props)

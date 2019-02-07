@@ -19,6 +19,7 @@ export function chat(state=initState,action){
       case MSG_LIST:
           return {...state, chatmsg:action.payload, unread:action.payload.filter(v=>!v.read).length}
       case MSG_RECV:
+          return {...state, chatmsg:[...state.chatmsg, action.payload]}
       case MSG_READ:
       default:
           return state
@@ -46,7 +47,6 @@ export function sendMsg({from ,to ,msg}){
   return dispatch=>{
       socket.emit('sendmsg',{from,to,msg})
   }
-  
 }
 
 export function getMsgList() {

@@ -12,7 +12,7 @@ class UserChart extends React.Component {
       <div>
         <WingBlank>
           {this.props.userlist.map(v=>
-            v.avatar ? <Card key={v._id} onClick={()=>this.handlechange(v.user._id)}>
+            v.avatar ? <Card key={v._id} onClick={()=>this.handlechange(v._id)}>
             <Card.Header
               title={v.user}
               thumb={require(`../img/${v.avatar}.png`)}

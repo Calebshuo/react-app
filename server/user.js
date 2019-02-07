@@ -5,6 +5,8 @@ const model = require('./model')
 const User = model.getModel('user')
 const _filter = {pwd:0, __v:0}
 
+const Chat = model.getModel('chat')
+
 router.get('/list', function(req, res) {
   // User.remove({}, function(e,d){})
   const { type } = req.query
