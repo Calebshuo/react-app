@@ -97,11 +97,18 @@ function md5Pwd(pwd) {
 
 router.get('/getmsglist',function(req,res){
   const user = req.cookies.userid
-  Chat.find({},function(err,doc){
-    if(!err){
-      return res.json({code:0,msgs:doc})
-    }
-  })
+  User.find({},function(e,userdoc){
+    //转成对象形式返回
+    let users = {}
+    userdoc.forEach(v=>{
+      users[v._id] = {name:v.user,avatar:v.avatar}
+    })
+    Chat.find({'$or':[{from:user},{to:user}]},function(err,doc){
+      if(!err){
+        return res.json({code:0,msgs:doc,users:users})
+      }
+    })
+})
 })
 
 module.exports = router

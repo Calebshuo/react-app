@@ -21,7 +21,7 @@ class UserCenter extends React.Component {
         browserCookie.erase('userid')
         this.props.logout()
         this.props.history.push('/login')
-      } },
+      } }
     ]);
   }
   render() {
