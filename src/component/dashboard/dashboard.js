@@ -18,8 +18,11 @@ function Msg() {
 )
 class Dashboard extends React.Component {
   componentDidMount() {
-    this.props.getMsgList()
-    this.props.recvMsg()
+    // 防止调用多次事件监听器
+    if (this.props.chat.chatmsg.length==0) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
   }
 
   render() {

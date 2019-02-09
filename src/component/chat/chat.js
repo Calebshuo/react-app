@@ -2,6 +2,7 @@ import React from 'react'
 import { List, InputItem, NavBar, Icon } from 'antd-mobile'
 import { getMsgList, recvMsg, sendMsg } from '../../redux/chat.redux'
 import { connect } from 'react-redux'
+import { getChatId } from '../../util'
 
 @connect (
   state=>state,
@@ -36,6 +37,8 @@ class Chat extends React.Component {
     const userid = this.props.match.params.user
     const Item = List.Item
     const users = this.props.chat.users
+    const chatid = getChatId(userid, this.props.user._id)
+    const chatmsg = this.props.chat.chatmsg.filter(v=>v.chatid==chatid)
     // console.log(this.props)
     return users[this.props.match.params.user] ? (
      <div id='chat-page'>
@@ -46,7 +49,7 @@ class Chat extends React.Component {
         >
          {users[this.props.match.params.user].name}
        </NavBar>
-       {this.props.chat.chatmsg.map(v=>{
+       {chatmsg.map(v=>{
          const avatar = require(`../img/${users[v.from].avatar}.png`)
          return v.from == userid ? 
          (<List key={v._id}>

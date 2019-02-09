@@ -103,6 +103,7 @@ router.get('/getmsglist',function(req,res){
     userdoc.forEach(v=>{
       users[v._id] = {name:v.user,avatar:v.avatar}
     })
+    // 不需要把所有聊天记录都拿出来，提高效率
     Chat.find({'$or':[{from:user},{to:user}]},function(err,doc){
       if(!err){
         return res.json({code:0,msgs:doc,users:users})
