@@ -95,6 +95,16 @@ function md5Pwd(pwd) {
   return utils.md5(utils.md5(pwd+salt))
 }
 
+router.post('/readmsg',function(req,res){
+  const userid = req.cookies.userid
+  const { from } = req.body
+  Chat.updateMany({from,to:userid},{read:true},{'multi':true},function(e,d) {
+    if (!e) {
+      return res.json({code:0,num:d.nModified})
+    }
+  })
+})
+
 router.get('/getmsglist',function(req,res){
   const user = req.cookies.userid
   User.find({},function(e,userdoc){

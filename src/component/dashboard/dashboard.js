@@ -7,10 +7,7 @@ import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import UserCenter from '../usercenter/usercenter'
 import { getMsgList, recvMsg } from '../../redux/chat.redux'
-
-function Msg() {
-  return <h2>消息列表页面</h2>
-}
+import Msg from '../msg/msg'
 
 @connect(
   state => state,
@@ -19,7 +16,7 @@ function Msg() {
 class Dashboard extends React.Component {
   componentDidMount() {
     // 防止调用多次事件监听器
-    if (this.props.chat.chatmsg.length==0) {
+    if (this.props.chat.chatmsg.length===0) {
       this.props.getMsgList()
       this.props.recvMsg()
     }
