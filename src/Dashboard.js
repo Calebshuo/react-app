@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to={`${match.url}/`}>Home</Link>
+              <Link to={`${match.url}`}>Home</Link>
             </li>
             <li>
               <Link to={`${match.url}/about`}>About</Link>

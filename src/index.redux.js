@@ -1,4 +1,5 @@
 export function reducer(state=0, action) {
+  console.log(state,action)
   switch(action.type) {
     case 'add':
       return state+1
