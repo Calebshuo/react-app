@@ -50,9 +50,11 @@ export function recvMsg(){
       })
   }
 }
+function isOpen(ws) { return ws.readyState === ws.OPEN }
 
 export function sendMsg({from ,to ,msg}){
   return dispatch=>{
+      if (!isOpen(socket)) return;
       socket.emit('sendmsg',{from,to,msg})
   }
 }
