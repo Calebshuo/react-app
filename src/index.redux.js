@@ -1,12 +1,12 @@
-export function reducer(state=0, action) {
+export function reducer(state={num:0}, action) {
   console.log(state,action)
   switch(action.type) {
     case 'add':
-      return state+1
+      return {num:state.num+1}
     case 'remove':
-      return state-1
+      return {num:state.num-1}
     default:
-      return 10
+      return {num:10}
   }
 }
 
