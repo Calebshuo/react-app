@@ -1,5 +1,5 @@
 export function reducer(state={num:0}, action) {
-  console.log(state,action)
+  console.log('###index.redux',state,action)
   switch(action.type) {
     case 'add':
       return {num:state.num+1}

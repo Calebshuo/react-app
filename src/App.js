@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Button } from 'antd-mobile';
 import {add, remove, asyncAdd} from './index.redux.js';
-import { connect } from './woniu-react-redux';
+import { connect } from './custom-react-redux';
 
-class App extends React.Component {
+class App extends Component {
   render() {
+    console.log('###app_props',this.props)
     return (
       <div>
-        {console.log(this.props)}
         <h2>state count is {this.props.num}</h2>
         <Button onClick={this.props.add}>add</Button>
         <Button onClick={this.props.remove}>remove</Button>
