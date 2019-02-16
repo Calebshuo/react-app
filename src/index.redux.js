@@ -19,7 +19,8 @@ export function remove() {
 }
 
 export function asyncAdd() {
-  return (dispatch)=>{
+  return (dispatch, getState)=>{
+    console.log(getState())
     setTimeout(() => {
       return dispatch({type:'add'})
     }, 2000);

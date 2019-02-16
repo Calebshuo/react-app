@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { createStore } from './custom-redux'
+import { createStore, applyMiddleware } from './custom-redux'
+import thunk from './custom.thunk';
 import { Provider } from './custom-react-redux';
 import { BrowserRouter as Router, 
   Route, 
@@ -26,7 +26,7 @@ import App from './App'
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // ))
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
