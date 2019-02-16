@@ -20,9 +20,13 @@ export function remove() {
 
 export function asyncAdd() {
   return (dispatch, getState)=>{
-    console.log(getState())
+    // console.log(getState())
     setTimeout(() => {
       return dispatch({type:'add'})
     }, 2000);
   }
+}
+
+export function addTwice() {
+  return [{type:'add'}, asyncAdd()]
 }
