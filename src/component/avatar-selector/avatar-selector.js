@@ -8,7 +8,7 @@ class AvatarSelector extends React.Component {
   }
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {} 
   }
   render () {
     const avatarList = ['boy', 'girl', 'man' ,'woman', 'chick' ,'crab' ,'bull' ,'hedgehog', 'hippopo' ,'koala', 'lemur', 'pig', 'tiger', 'whale', 'zebra'].map(v => ({
