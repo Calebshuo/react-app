@@ -1,5 +1,6 @@
 import axios from 'axios'
 import io from 'socket.io-client'
+
 const socket = io('ws://localhost:9093')
 
 // list
@@ -50,24 +51,20 @@ export function recvMsg(){
       })
   }
 }
-function isOpen(ws) { return ws.readyState === ws.OPEN }
 
 export function sendMsg({from ,to ,msg}){
   return dispatch=>{
-      if (!isOpen(socket)) return;
       socket.emit('sendmsg',{from,to,msg})
   }
 }
 
 export function readMsg(from) {
-  return (dispatch,getState)=>{
-    axios.post('/user/readmsg',{from})
-      .then(res=>{
-        if(res.status===200&&res.data.code===0) {
-          const userid = getState().user._id
-          dispatch(msgRead(from,userid,res.data.num))
-        }
-      })
+  return async(dispatch,getState)=>{
+    const userid = getState().user._id
+    const res = await axios.post('/user/readmsg',{from})
+    if(res.status===200&&res.data.code===0) {
+      dispatch(msgRead(from,userid,res.data.num))
+    }
   }
 }
 

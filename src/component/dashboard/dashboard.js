@@ -11,7 +11,7 @@ import Msg from '../msg/msg'
 
 @connect(
   state => state,
-  { getMsgList, recvMsg}
+  { getMsgList, recvMsg }
 )
 class Dashboard extends React.Component {
   componentDidMount() {

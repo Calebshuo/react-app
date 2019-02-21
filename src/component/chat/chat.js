@@ -3,6 +3,7 @@ import { List, InputItem, NavBar, Icon } from 'antd-mobile'
 import { getMsgList, recvMsg, sendMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
 import { connect } from 'react-redux'
+import QueueAnim from 'rc-queue-anim'
 
 @connect (
   state=>state,
@@ -17,7 +18,7 @@ class Chat extends React.Component {
     // socket.on('servertalk', data=>{
     //   this.setState({msg:[...this.state.msg,data]})
     // })
-    if (this.props.chat.chatmsg.length===0) {
+    if (this.props.chat.chatmsg.length==0) {
       this.props.getMsgList()
       this.props.recvMsg()
     }
@@ -53,6 +54,7 @@ class Chat extends React.Component {
         >
          {users[this.props.match.params.user].name}
        </NavBar>
+       <QueueAnim>
        {chatmsg.map(v=>{
          const avatar = require(`../img/${users[v.from].avatar}.png`)
          return v.from === userid ? 
@@ -67,6 +69,7 @@ class Chat extends React.Component {
              className='chat-me'> {v.content} </Item>
          </List>)
        })}
+       </QueueAnim>
        <List style={{position: 'fixed', width: '100%', bottom: 0}}>
          <InputItem
           placeholder='请输入'
