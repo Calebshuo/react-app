@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
 import NavLink from '../navlink/navlink'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import UserCenter from '../usercenter/usercenter'
@@ -11,7 +11,7 @@ import Msg from '../msg/msg'
 
 @connect(
   state => state,
-  { getMsgList, recvMsg }
+  { getMsgList, recvMsg}
 )
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
       this.props.recvMsg()
     }
   }
-
   render() {
     const pathName = this.props.location.pathname
     const user = this.props.user;
@@ -57,9 +56,11 @@ class Dashboard extends React.Component {
             component:UserCenter
         }
     ]
+    const page = navList.find(v=>v.path === pathName)
     return (
+      page ? 
       <div>
-        <NavBar mode='dark'>{navList.find(v=>v.path === pathName).title}</NavBar>
+        <NavBar mode='dark'>{page.title}</NavBar>
         <div style={{marginTop:45, marginBottom:85}}>
           <Switch>
             {navList.map(v=>
@@ -72,7 +73,7 @@ class Dashboard extends React.Component {
           </Switch>
         </div>
         <NavLink data={navList}></NavLink>
-      </div>
+      </div> : <Redirect to='/msg'></Redirect>
     )
   }
 }
