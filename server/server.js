@@ -22,10 +22,14 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const model = require('./model')
 const Chat = model.getModel('chat')
+<<<<<<< HEAD
 
 
 
 io.on('connection', function(socket) { // io是全局，socket是本地址
+=======
+io.on('connection', function(socket) { // io是全局，socket是当前这次连接（io.emit：全局emit的事件所有socket都可以监听到。）
+>>>>>>> c90fa2c... 3.14 last review
   console.log('user login')
   socket.on('sendmsg', function(data) {
     const { from, to, msg } = data

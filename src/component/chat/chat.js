@@ -1,9 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { List, InputItem, NavBar, Icon } from 'antd-mobile'
 import { getMsgList, recvMsg, sendMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
+<<<<<<< HEAD
 import { connect } from 'react-redux'
 import QueueAnim from 'rc-queue-anim'
+=======
+
+>>>>>>> c90fa2c... 3.14 last review
 
 @connect (
   state=>state,
@@ -18,7 +23,12 @@ class Chat extends React.Component {
     // socket.on('servertalk', data=>{
     //   this.setState({msg:[...this.state.msg,data]})
     // })
+<<<<<<< HEAD
     if (this.props.chat.chatmsg.length==0) {
+=======
+    // 进了chat又退出，redux已经有数据了再进chat就不需要重新获取数据了（不管和哪个用户聊天都一样，因为获取的数据都是和本地id有关的）
+    if (this.props.chat.chatmsg.length===0) {
+>>>>>>> c90fa2c... 3.14 last review
       this.props.getMsgList()
       this.props.recvMsg()
     }
@@ -39,18 +49,19 @@ class Chat extends React.Component {
     })
   }
   render() {
-    const userid = this.props.match.params.user
     const Item = List.Item
+    const userid = this.props.match.params.user
     const users = this.props.chat.users
     const chatid = getChatId(userid, this.props.user._id)
+    // 拿出需要展示的聊天
     const chatmsg = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
-    // console.log(this.props)
     return users[this.props.match.params.user] ? (
      <div id='chat-page'>
        <NavBar 
         mode='dark'
         icon={<Icon type="left" />}
         onLeftClick={() => this.props.history.goBack()}
+        style={{position:'fixed',top:0,zIndex:'100',width:'100%'}}
         >
          {users[this.props.match.params.user].name}
        </NavBar>

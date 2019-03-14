@@ -1,4 +1,5 @@
 import React from 'react'
+import { debug } from 'util';
 
 export default function reactForm(Comp) {
   return class WrapperComp extends React.Component {

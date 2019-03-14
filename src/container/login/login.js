@@ -6,11 +6,12 @@ import { login } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 import reactForm from '../../component/react-form/react-form'
 
-@reactForm
+
 @connect (
   state => state.user,
   { login }
 )
+@reactForm
 class Login extends React.Component {
   constructor(props) {
     super(props)

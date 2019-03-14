@@ -21,9 +21,12 @@ class Msg extends React.Component {
       chatid[v.chatid] = chatid[v.chatid] || []
       chatid[v.chatid].push(v)
     })
+    // return >0 b在a前, <0 a在b前
     const chatIdArr = Object.values(chatid).sort((a,b)=>{
       return this.lastmsg(b).create_time - this.lastmsg(a).create_time
     })
+    console.log(chatid)
+    console.log(chatIdArr)
     const userInfo = this.props.chat.users
     return (
       <div>
@@ -31,6 +34,7 @@ class Msg extends React.Component {
           chatIdArr.map(v=>{
             const unread = v.filter(n=>!n.read && n.to === this.props.user._id
             ).length
+            // 选对方的id
             const authorid = this.lastmsg(v).from === this.props.user._id ? this.lastmsg(v).to : this.lastmsg(v).from
             return (
               <List key={v[0]._id}>

@@ -3,14 +3,14 @@ const utils = require('utility')
 const router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
-const _filter = {pwd:0, __v:0}
+const _filter = {pwd:0, __v:0} // 过滤掉这两个字段，在返回值中不显示
 
 const Chat = model.getModel('chat')
 
 router.get('/list', function(req, res) {
   // User.remove({}, function(e,d){})
   const { type } = req.query
-  User.find({type}, function(err,doc) {
+  User.find({type}, _filter, function(err,doc) {
     return res.json({code:0,data:doc})
   })
 })
@@ -98,8 +98,9 @@ function md5Pwd(pwd) {
 router.post('/readmsg',function(req,res){
   const userid = req.cookies.userid
   const { from } = req.body
-  Chat.updateMany({from,to:userid},{read:true},{'multi':true},function(e,d) {
+  Chat.updateMany({from,to:userid},{read:true},function(e,d) {
     if (!e) {
+      console.log(d)
       return res.json({code:0,num:d.nModified})
     }
   })
