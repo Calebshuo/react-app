@@ -44,18 +44,6 @@ function msgRead(from,num) {
   return {type:MSG_READ,payload:{from,num}}
 }
 
-<<<<<<< HEAD
-export function recvMsg(){
-  return (dispatch,getState)=>{
-      socket.on('recvmsg',function(data){
-          const toid = getState().user._id
-          dispatch(msgRecv(data,toid))
-      })
-  }
-}
-
-=======
->>>>>>> c90fa2c... 3.14 last review
 export function sendMsg({from ,to ,msg}){
   return dispatch=>{
       socket.emit('sendmsg',{from,to,msg})
@@ -63,22 +51,19 @@ export function sendMsg({from ,to ,msg}){
 }
 
 export function readMsg(from) {
-<<<<<<< HEAD
   return async(dispatch,getState)=>{
-    const userid = getState().user._id
     const res = await axios.post('/user/readmsg',{from})
     if(res.status===200&&res.data.code===0) {
-      dispatch(msgRead(from,userid,res.data.num))
+      dispatch(msgRead(from,res.data.num))
     }
-=======
-  return (dispatch,getState)=>{
-    axios.post('/user/readmsg',{from})
-      .then(res=>{
-        if(res.status===200&&res.data.code===0) {
-          dispatch(msgRead(from,res.data.num))
-        }
-      })
->>>>>>> c90fa2c... 3.14 last review
+  // return (dispatch,getState)=>{
+  //   axios.post('/user/readmsg',{from})
+  //     .then(res=>{
+  //       if(res.status===200&&res.data.code===0) {
+  //         dispatch(msgRead(from,res.data.num))
+  //       }
+  //     })
+  // }
   }
 }
 

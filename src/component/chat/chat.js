@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import { List, InputItem, NavBar, Icon } from 'antd-mobile'
 import { getMsgList, recvMsg, sendMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
-<<<<<<< HEAD
-import { connect } from 'react-redux'
 import QueueAnim from 'rc-queue-anim'
-=======
-
->>>>>>> c90fa2c... 3.14 last review
 
 @connect (
   state=>state,
@@ -23,12 +18,8 @@ class Chat extends React.Component {
     // socket.on('servertalk', data=>{
     //   this.setState({msg:[...this.state.msg,data]})
     // })
-<<<<<<< HEAD
-    if (this.props.chat.chatmsg.length==0) {
-=======
     // 进了chat又退出，redux已经有数据了再进chat就不需要重新获取数据了（不管和哪个用户聊天都一样，因为获取的数据都是和本地id有关的）
     if (this.props.chat.chatmsg.length===0) {
->>>>>>> c90fa2c... 3.14 last review
       this.props.getMsgList()
       this.props.recvMsg()
     }
