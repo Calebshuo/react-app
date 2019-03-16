@@ -2,7 +2,9 @@ import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
+// 解决node端css加载
 import csshook from 'css-modules-require-hook/preset'
+// 解决node端png图片加载
 import assetHook from 'asset-require-hook'
 assetHook({
     extensions: ['png']
@@ -41,10 +43,7 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 
 app.use('/user', userRouter)
-// function App() {
-//   return <h2>111111</h2>
-// }
-// console.log('renderToString(App())',renderToString(App()))
+
 const path = require('path')
 // js、css的请求会发到/build/static/xxxx.js
 app.use(express.static(path.resolve('build')))
@@ -70,7 +69,6 @@ app.use(function(req, res, next){
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
       <link rel="stylesheet" href="${staticPath['main.css']}">
-      <link rel="stylesheet" href="${staticPath['static/css/1.5a90b03a.chunk.css']}">
       <meta name="description" content="React-App" />
       <meta name="keywords" content="React,Redux,SSR,React-router,Socket.io" />
       <meta name="author" content="Imooc" >
@@ -83,9 +81,7 @@ app.use(function(req, res, next){
       </noscript>
       <div id="root">${markup}</div>
       <script src="${staticPath['main.js']}"></script>
-      <script src="${staticPath['static/js/1.e59bc5bb.chunk.js']}"></script>
       <script src="${staticPath['runtime~main.js']}"></script>
-      <script src="${staticPath['precache-manifest.0035b5c80fe6f9193c05b58b29b54b6c.js']}"></script>
     </body>
   </html>
   `
